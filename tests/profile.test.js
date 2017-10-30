@@ -308,7 +308,7 @@ describe('account workflow', function () {
     createUserAndLogin(browser)
     browser.pause(2000)
     browser.url('http://localhost:3000/profile')
-    browser.waitForExist('#send-eth', 15000)
+    browser.waitForExist('#send-eth', 30000)
     browser.click('#send-eth')
     browser.waitForExist('.modal-dialog', 5000)
   })
