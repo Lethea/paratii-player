@@ -70,7 +70,12 @@ Template.profile.helpers({
 
 Template.profile.events({
   'click #create-wallet' () {
-    Modal.show('showSeed', { type: 'create' })
+    Modal.show('main_modal', {
+      modal: 'showSeed',
+      data: {
+        type: 'create'
+      }
+    })
   },
   'click #send-eth' () {
     Modal.show('doTransaction', { type: 'Eth', label: 'Send Ether' })
@@ -84,7 +89,9 @@ Template.profile.events({
   'click #show-seed' () {
     Modal.show('main_modal', {
       modal: 'showSeed',
-      type: 'show'
+      data: {
+        type: 'show'
+      }
     })
   },
   'click #edit-profile' () {

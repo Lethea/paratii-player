@@ -25,7 +25,12 @@ if (Meteor.isClient) {
           if (err) {
             throw err
           }
-          Modal.show('showSeed', { type: 'show' })
+          Modal.show('main_modal', {
+            modal: 'showSeed',
+            data: {
+              type: 'show'
+            }
+          })
           let password = Session.get('user-password')
           createKeystore(password, seedPhrase, function (error, result) {
             if (error) {

@@ -55,6 +55,7 @@ Template.showSeed.events({
         throw error
       }
       if (result) {
+        console.log('typeeee ', this)
         if (this.type === 'create') {
           // TODO: ?????????????????
           createNewSeed(password)
