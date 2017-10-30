@@ -4,7 +4,7 @@ import './showSeed.html'
 
 Template.showSeed.onCreated(function () {
   this.errorMessage = new ReactiveVar(null)
-  Session.set('passwordType', 'password')
+  this.passwordType = new ReactiveVar('password')
 })
 
 Template.showSeed.onRendered(() =>
@@ -23,7 +23,7 @@ Template.showSeed.helpers({
     return Template.instance().errorMessage.get()
   },
   passwordType () {
-    return Session.get('passwordType')
+    return Template.instance().passwordType.get()
   }
 })
 
@@ -45,6 +45,10 @@ const createNewSeed = password => {
 }
 
 Template.showSeed.events({
+  'click button.password' (event, instance) {
+    const inputType = (instance.passwordType.get() === 'password') ? 'text' : 'password'
+    instance.passwordType.set(inputType)
+  },
   'submit #form-show-seed' (event, instance) {
     event.preventDefault()
     const button = $('#btn-show-seed')
@@ -55,11 +59,11 @@ Template.showSeed.events({
         throw error
       }
       if (result) {
-        console.log('typeeee ', this)
         if (this.type === 'create') {
-          // TODO: ?????????????????
+          // create a new seed and show to the user
           createNewSeed(password)
         } else {
+          // get the local seed and show to the user
           getSeed(password, () => {
             button.button('reset')
           })
