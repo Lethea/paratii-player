@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 7.10.0
+    version: 8.8.1
 
 dependencies:
   override:
@@ -23,9 +23,9 @@ test:
     - google-chrome --version
   override:
     - sleep 10
-    # - yarn run test-headless:
-    #     timeout: 1020
-    - npm run dev-concurrently:
+    - yarn run test-headless:
+        timeout: 1020
+    - yarn run dev-concurrently:
         background: true
     - sleep 60
     - yarn run chimp-test
