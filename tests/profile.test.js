@@ -308,7 +308,7 @@ describe('account workflow', function () {
     createUserAndLogin(browser)
     browser.pause(2000)
     browser.url('http://localhost:3000/profile')
-    browser.waitForExist('#send-eth', 10000)
+    browser.waitForExist('#send-eth', 15000)
     browser.click('#send-eth')
     browser.waitForExist('.modal-dialog', 5000)
   })
@@ -329,7 +329,7 @@ describe('account workflow', function () {
     assert.equal(browser.getText('.control-label'), 'Wrong password', 'should show "Wrong password" text')
   })
 
-  it('restore the keystore', function () {
+  it('restore the keystore @watch', function () {
     browser.execute(clearUserKeystoreFromLocalStorage)
     createUserAndLogin(browser)
     browser.pause(2000)
@@ -337,6 +337,7 @@ describe('account workflow', function () {
 
     browser.waitForEnabled('#show-seed', 10000)
     browser.click('#show-seed')
+    browser.pause(1000)
     browser.waitForEnabled('[name="user_password"]')
     browser.setValue('[name="user_password"]', 'password')
     browser.click('#btn-show-seed')
